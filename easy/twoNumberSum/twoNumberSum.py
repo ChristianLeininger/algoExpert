@@ -1,9 +1,12 @@
-
+# copyright 2023
+# author: Christian Leininger
+# Email: leininic @ tf.uni-freiburg.d
+# date: 24.05.2023
 
 
 # time O(n**2) space O(1)
 def twoNumberSumNaive(array, targetSum):
-    """ find two Numbers that sum up to targetSum 
+    """ find two Numbers that sum up to targetSum
     Naive solution use two for loops to iterate through the array
     param: array: list of numbers
     param: targetSum: int
@@ -19,13 +22,15 @@ def twoNumberSumNaive(array, targetSum):
             if firstNum + secondNum == targetSum:
                 return [firstNum, secondNum]
     return []
-    
 
+
+# -----------------------------------------------------------------------------#
 # time O(n) space O(n)
 def twoNumberSumDict(array, targetSum):
-    """ use the fact that targetSum = firstNum + secondNum 
+    """ use the fact that targetSum = firstNum + secondNum
         so secondNum = targetSum - firstNum
-        use a dictionary to store the secondNum and check if it is in the dictionary
+        use a dictionary to store the secondNum
+        and check if it is in the dictionary
         param: array: list of numbers
         param: targetSum: int
         return: list of two numbers that sum up to targetSum
@@ -42,13 +47,18 @@ def twoNumberSumDict(array, targetSum):
             nums[num] = True
     return []
 
+
+# -----------------------------------------------------------------------------#
 # time O(nlog(n)) space O(1)
 def twoNumberSumSort(array, targetSum):
     """ sort the array first value of
-    left pointer and right pointer and compare with targetSum to move the pointers
-    if numSum > targetSum move right pointer to the left else move left pointer to the right
-    until left pointer is greater than right pointer then return empty list 
-    
+    left pointer and right pointer and compare
+    with targetSum to move the pointers
+    if numSum > targetSum move right pointer to the
+    left else move left pointer to the right
+    until left pointer is greater than right pointer
+    then return empty list
+
         param: array: list of numbers
         param: targetSum: int
         return: list of two numbers that sum up to targetSum
