@@ -4,7 +4,7 @@
 # date: 28.05.2023
 
 
-from brunchSum import BinaryTree, branchSums
+from branchSum import BinaryTree, branchSums
 import unittest
 
 
