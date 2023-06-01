@@ -7,7 +7,7 @@ from typing import List
 
 
 # run time O(n^2) and space O(1)
-def insertionSort(array: List):
+def insertionSort(array: List) -> List:
     """ use the insertion sort algo
     It sorts the array in place with run time O(n^2) and space O(1)
     It keeps the left side of the array sorted and insert the elment
@@ -33,7 +33,7 @@ def insertionSort(array: List):
             return array
 
 
-def move_element(array: List, pos1: int, pos2: int):
+def move_element(array: List, pos1: int, pos2: int) -> List:
     """ helper function to move element from pos2 to pos1
     Args:
         param1(array): array of integers
