@@ -6,6 +6,25 @@
 from typing import List
 
 
+# naive solution O(n^2) time | O(n) space
+def arrayOfProductsNaive(array: List) -> List:
+    """  straight forward solution needs two loops
+         to compute the product of all other numbers in the array
+    Args:
+        param1(list): list of integers
+    Return: list of integers
+
+    """
+    products = [1 for _ in array]
+    for i in range(len(array)):
+        runningProduct = 1
+        for j in range(len(array)):
+            if i != j:
+                runningProduct *= array[j]
+        products[i] = runningProduct
+    return products
+
+
 # O(n) time | O(n) space
 def arrayOfProducts(array: List) -> List:
     """ Computes the product of all other numbers in the array
