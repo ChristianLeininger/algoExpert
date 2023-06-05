@@ -32,19 +32,18 @@ def arrayOfProducts(array: List) -> List:
         equal to the product of all numbers to the left multiplied
         by the product of all numbers to the right. Loop through
         the array twice, once from left to right and once from right to left.
+        see pdf explaition
     Args:
         param1(list): list of integers
     Return: list of integers
     """
     sol = [1 for i in array]
-    for idx, i in enumerate(array):
-        p = idx + 1
-        while p < len(sol):
-            sol[p] *= i
-            p += 1
-    for idx in range(len(array) - 1, 0, -1):
-        p = idx - 1
-        while p >= 0:
-            sol[p] *= array[idx]
-            p -= 1
+    runningProduct = 1
+    for i in range(len(array)):
+        sol[i] = runningProduct
+        runningProduct *= array[i]
+    runningProduct = 1
+    for i in reversed(range(len(array))):
+        sol[i] *= runningProduct
+        runningProduct *= array[i]
     return sol
