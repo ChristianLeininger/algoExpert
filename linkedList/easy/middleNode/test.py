@@ -17,3 +17,22 @@ class TestProgram(unittest.TestCase):
         expected.next = LinkedList(3)
         actual = middleNodeNaive(linkedList)
         self.assertEqual(actual, expected)
+
+    def test_case_2(self):
+        linkedList = LinkedList(0)
+        linkedList.next = LinkedList(1)
+        expected = LinkedList(2)
+        linkedList.next.next = expected
+        expected.next = LinkedList(3)
+        actual = middleNode(linkedList)
+        self.assertEqual(actual, expected)
+
+    def test_case_3(self):
+        linkedList = LinkedList(0)
+        linkedList.next = LinkedList(1)
+        expected = LinkedList(2)
+        linkedList.next.next = expected
+        expected.next = LinkedList(3)
+        expected.next.next = LinkedList(4)
+        actual = middleNodeNaive(linkedList)
+        self.assertEqual(actual, expected)
