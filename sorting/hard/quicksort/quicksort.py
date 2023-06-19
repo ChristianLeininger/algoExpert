@@ -7,48 +7,47 @@
 from typing import List
 
 
-def pivo_sort(array: List, left: int, right: int, pivo_idx: int) -> List:
-    """ use the  pivo element to sort the array
-        move all elements smaller then pivo to the left
-        and all elements bigger to the right
+def partition(array: List, left: int, right: int) -> List:
+    """ Partition the array into two parts
+        left part all elements smaller then pivo
+        right part all elements bigger then pivo
+
     Args:
         param1(list): array of integers
-        param2(int): index of the pivo element
-    Return: half sorted array with pivo element at the right position
+        param2(int): left index
+        param3(int): right index
+    Return: array, index of pivo element
     """
-    lp = left
-    rp = right
-    pivot = array[pivo_idx]
-    # swap pivo elemtent at first
-    array[lp], array[pivo_idx] = array[pivo_idx], array[lp]
-    lp += 1
-    # now swap all elements smaller then pivo to the left
-    # all elements bigger to the right
+    pivot = array[left]
+    low = left + 1
+    high = right
     while True:
-        # find element bigger then pivo from left
-        # and smaller from right then swap
-        # print(f"left {lp} right {rp} array {array}")
-        while lp < right and array[lp] < pivot:
-            # left needs to point to element bigger then pivo
-            lp += 1
-        # now lp points to element bigger then pivo
+        # If the current value we're looking at is larger than the pivot
+        # it's in the right place (right side of pivot) and we can move left,
+        # to the next element.
+        # We also need to make sure we haven't surpassed the low pointer,
+        # since that indicates we have already moved all the elements
+        # to their correct side of the pivot
+        while low <= high and array[high] >= pivot:
+            high = high - 1
+        # Opposite process of the one above
+        while low <= high and array[low] <= pivot:
+            low = low + 1
+        # We either found a value for both high and low that is out of order
+        # or low is higher than high, in which case we exit the loop
+        if low <= high:
+            array[low], array[high] = array[high], array[low]
+            # The loop continues
+        else:
+            # We exit out of the loop
+            break
+    # swap the pivo element with value from right pointer
+    array[left], array[high] = array[high], array[left]
 
-        while rp > left and array[rp] >= pivot:
-
-            rp -= 1
-        if lp >= rp:
-            # swap pivo element back to the right position
-            # case if pivo element is bigger then elemet at rp
-            if pivot > array[rp]:
-                array[left], array[rp] = array[rp], array[left]
-                return array
-            array[left], array[rp - 1] = array[rp - 1], array[left]
-            return array
-
-        array[lp], array[rp] = array[rp], array[lp]
+    return array, high
 
 
-def quick_sort(array: List, left: int, right: int) -> List:
+def recusion(array: List, left: int, right: int) -> List:
     """ Use the quick_sort algorithm to sort the array
         first divide the array into two parts
         left part all elements smaller then pivo
@@ -64,11 +63,29 @@ def quick_sort(array: List, left: int, right: int) -> List:
     Return: sorted array
     """
 
-    if len(array) <= 1:
+    if left >= right:
         return array
-    pivo_idx = 0
-    array = pivo_sort(array, left=left, right=right, pivo_idx=pivo_idx)
-    print(f" pivot {array[pivo_idx]} to the right position {array}")
+
+    # call recusion for left part
+    array, pivot_idx = partition(array=array, left=left, right=right)
+    array = recusion(array, left=left, right=pivot_idx - 1)
+    # call recusion for right part
+    array = recusion(array, left=pivot_idx + 1, right=right)
+    return array
+
+
+# O(nlog(n)) time | O(1) space
+def quickSort(array: List) -> List:
+    """ Compute the quicksort algorithm in place
+        use divide and conquer to sort the array
+    Args:
+        param1(list): array of integers
+    Return: sorted array
+    """
+    # edge case array is empty or has only one element
+    if len(array) < 2:
+        return array
+    return recusion(array, left=0, right=len(array) - 1)
 
 
 if __name__ == "__main__":
@@ -76,4 +93,4 @@ if __name__ == "__main__":
     array = [8, 5, 2, 1]
     array = [3, -1, 4, 1, -5, 9, 2, -6, 5, 3, -5]
     array = array = [8, 5, 2]
-    print(quick_sort(array, left=0, right=len(array) - 1))
+    print(quickSort(array))
