@@ -36,4 +36,17 @@ def middleNodeNaive(linkedList: LinkedList) -> LinkedList:
 
 
 def middleNode(linkedList: LinkedList) -> LinkedList:
-    pass
+    """ Use the idea of to pointer
+        one pointer move two steps
+        the other pointer move one step
+        if the fast pointer is at the end the slow pointer is in the middle
+    Args:
+        param1: linkedList: LinkedList
+    Return: middle node of the linked list
+    """
+    slow = linkedList
+    fast = linkedList
+    while fast is not None and fast.next is not None:
+        slow = slow.next
+        fast = fast.next.next
+    return slow
