@@ -36,7 +36,6 @@ def pivo_sort(array: List, left: int, right: int, pivo_idx: int) -> List:
         while rp > left and array[rp] >= pivot:
 
             rp -= 1
-            print(f"decrease right {rp} -> {array[rp]} is {pivot}")
         if lp >= rp:
             # swap pivo element back to the right position
             # case if pivo element is bigger then elemet at rp
