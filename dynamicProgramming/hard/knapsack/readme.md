@@ -9,5 +9,5 @@ and an integer that shows the weight.
 
 
 <p align="center">
-  <img src=".image/knapsack.jpg" alt="Size Limit CLI" width="738">
+  <img src="image/knapsack.jpg" alt="Size Limit CLI" width="738">
 </p>
