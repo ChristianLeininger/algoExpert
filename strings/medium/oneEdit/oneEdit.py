@@ -3,52 +3,45 @@
 # Email: leininic@tf.uni-freiburg.de
 # date: 20.06.2023
 
-
+# O(n) time | O(1) space
 def oneEdit(stringOne: str, stringTwo: str) -> bool:
-    """  Check if two strings are one edit away    """
+    """  check if two strings are one edit away    
+    
+    
+    Args:   
+        param1(str): first string
+        param2(str): second string
+    Return: bool true if one edit away else false
+    """
     lenOne = len(stringOne)
     lenTwo = len(stringTwo)
-
-    # case the length of both strings differ more than 1
+    # if one string is longer than the other
+    # by more than one character, they can't
+    # be one edit away from each other
     if abs(lenOne - lenTwo) > 1:
         return False
-
-    # case both strings have the same length
-    if lenOne == lenTwo:
-        return checkSameLength(stringOne, stringTwo)
-    # case one string is longer than the other
-    edited = False
-    index_stringOne = 0
-    index_stringTwo = 0
-    while index_stringOne < lenOne and index_stringTwo < lenTwo:
-        if stringOne[index_stringOne] == stringTwo[index_stringTwo]:
-            index_stringOne += 1
-            index_stringTwo += 1
-            continue
-        if edited:
-            return False
-        edited = True
-        # case delete one char in stringOne
-        if lenOne > lenTwo:
-            index_stringOne += 1
-            continue
-        # case delete one char in stringTwo
-        if lenOne < lenTwo:
-            index_stringTwo += 1
-            continue
-    # case one or edit
+    
+    for idx in range(min(lenOne, lenTwo)):
+        if stringOne[idx] != stringTwo[idx]:
+            # to chars are different 
+            # means the rest needs to be the same
+            # if strings have the same length
+            if lenOne == lenTwo:
+                # check if the rest of the strings are the same
+                return stringOne[idx + 1:] == stringTwo[idx + 1:]
+            # if the first string is longer than the second
+            elif lenOne > lenTwo:
+                # check if the rest of the first string is the same as the second
+                return stringOne[idx + 1:] == stringTwo[idx:]
+            # if the second string is longer than the first
+            else:
+                # check if the rest of the second string is the same as the first
+                return stringOne[idx:] == stringTwo[idx + 1:]
+    
+    # all characters are the same
     return True
 
-
-def checkSameLength(stringOne: str, stringTwo: str) -> bool:
-    """  Check if two strings are one edit away
-    Args:
-        param1(str): stringOne
-        param2(str): stringTwo
-    Return: true if one edit away
-    """
-    count = 0
-    for i in range(len(stringOne)):
-        if stringOne[i] != stringTwo[i]:
-            count += 1
-    return count < 2
+if __name__ == "__main__":
+    stringOne = "a"
+    stringTwo = "ba"
+    print(oneEdit(stringOne, stringTwo))
