@@ -6,10 +6,11 @@
 from typing import List
 import logging
 
+
 def fourNumberSum(array: List[int], targetSum: int) -> List[List[int]]:
     """ Find all quadruplets that sum up to the target sum
-     
-      
+
+
     Args:
         param1: (List[int]) array of integers
         param2: (int) target sum
@@ -40,13 +41,9 @@ def fourNumberSum(array: List[int], targetSum: int) -> List[List[int]]:
     return solution
 
 
-
-
-
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     array = [7, 6, 4, -1, 1, 2]
     targetSum = 16
     logging.info(f"Input array {array} targetSum {targetSum}")
     fourNumberSum(array=array, targetSum=targetSum)
-
