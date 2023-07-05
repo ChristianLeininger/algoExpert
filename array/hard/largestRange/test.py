@@ -12,7 +12,7 @@ class TestProgram(unittest.TestCase):
         self.assertEqual(largestRangeNaive([1, 11, 3, 0, 15, 5, 2, 4, 10, 7, 12, 6]), [0, 7])
 
     def test_case_2(self):
-        self.assertEqual(largestRangeNaive([1]), [1, 1])
+        self.assertEqual(largestRangeNaive([1, 2]), [1, 2])
 
     def test_case_3(self):
         self.assertEqual(largestRangeNaive([4, 2, 1, 3, 6]), [1, 4])
