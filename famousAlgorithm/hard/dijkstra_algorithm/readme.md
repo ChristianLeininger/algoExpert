@@ -19,6 +19,9 @@ for next node to explore.  Faster use min heap.
    Get the next node by taking the not visited node with the shortest path.
    Can be expensive if not a min heap is used 
 
+
+![Graph Example](images/Dijkstra.jpeg)
+
 Requirements  - Python 3.x 
 
 Installation No additional installation is required. The standard Python library is sufficient to run the program and tests. 
