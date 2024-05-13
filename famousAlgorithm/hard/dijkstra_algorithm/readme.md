@@ -1,4 +1,4 @@
-## Number of Ways to Traverse a Grid 
+## Dijkstra Algorithm
 
 
 This repository provides an implementation of Dijkstra's Algorithm in Python, which is used to find the shortest paths between nodes in a graph. The algorithm works efficiently with graphs having non-negative edge weights.
